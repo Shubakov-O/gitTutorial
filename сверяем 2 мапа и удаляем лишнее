@@ -1,0 +1,30 @@
+package main
+
+import "fmt"
+
+func main() {
+	groupCity := map[int][]string{
+		10:   {"Иваново", "Захарово"}, // города с населением 10-99 тыс. человек
+		100:  {"Орел", "Брянск"},      // города с населением 100-999 тыс. человек
+		1000: {"Москва", "Казань"},    // города с населением 1000 тыс. человек и более
+	}
+	cityPopulation := map[string]int{
+		"Иваново": 10,
+		"Москва":  1500,
+		"Казань":  1125,
+		"Орел":    150,
+		"Брянск":  225,
+	}
+	for key := range cityPopulation {
+		var test bool
+		for _, value := range groupCity[100] {
+			if key == value {
+				test = true
+			}
+		}
+		if !test {
+			delete(cityPopulation, key)
+		}
+	}
+	fmt.Println(cityPopulation)
+}
